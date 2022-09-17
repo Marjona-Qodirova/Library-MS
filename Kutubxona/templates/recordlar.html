@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Record</title>
+</head>
+<body>
+    <h1> Barcha recordlar ro'yxati</h1>
+    <br>
+    <hr>
+    {% for record in records %}
+    <h2> {{ record.id }}. {{ record.student.ism }}. {{ record.kitob.nom}}. Qaytardi: {{ record.qaytardi }}</h2>
+        <button> <a href="/recordlar/{{record.id }}/"> </a>  Taxrirlash</button>
+    {% endfor %}
+    <br>
+    <br>
+    <form method="post" action="/recordlar/">  {% csrf_token %}
+        {{f.as_p }}
+
+        <button type="submit"> Qo'shish </button>
+
+
+
+
+    </form>
+
+
+
+
+
+</body>
+</html>

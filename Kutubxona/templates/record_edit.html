@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recordni taxrirlash</title>
+</head>
+<body>
+  <br>
+  <hr>
+  <h1> Recordni o'zgartiring</h1>
+  <br>
+  <hr>
+  <br>
+  <form method="post" action="/recordlar/{{ record.id }}/">  {% csrf_token %}
+        <select name="st">
+             <option value="{{ record.student.id }}">  {{ student.ism }}, {{student.guruh}} </option>
+             {% for student in students %}
+            <option value="{{ student.id }}">   {{ student.ism }}, {{student.guruh}}</option>
+            {% endfor %}
+        </select>
+        <select name="k">
+             {% for kitob in kitoblar %}
+            <option value="{{ kitob.id }}">   {{ kitob.nom}}, {{kitob.muallif.ism}}</option>
+            {% endfor %}
+        </select>
+      {% if record.qaytardi %}
+      <input type="checkbox" name="qaytardi" checked>
+      {% else %}
+      <input type="checkbox" name="qaytardi">
+      {% endif %}
+      {% if not  record.qaytarish_sana %}
+      <input type="date" name="qaytarish_sana">
+      {% endif %}
+
+
+      <button type="submit"> Saqlash </button>
+
+    </form>
+
+</body>
+</html>

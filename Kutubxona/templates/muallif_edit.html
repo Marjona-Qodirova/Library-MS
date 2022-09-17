@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Muallif</title>
+</head>
+<body>
+    <h2> Muallifni taxrirlash </h2>
+    <br>
+    <hr>
+    {% for muallif in mualliflar %}
+    <h4> {{muallif.id }}, {{muallif.ism}}</h4>
+    {% endfor %}
+
+
+    <br>
+    <hr>
+     <form  method="post" action="/muallif/{{ muallif.id }}/"> {% csrf_token %}
+        <input type="text" name="i" value="{{ muallif.ism}}">
+        <input type="text" name="j" value="{{muallif.jins}}">
+        {% if muallif.tirik %}
+        <input type="checkbox" name="t" checked>
+        {% else %}
+
+        <input type="checkbox" name="t">
+        {% endif %}
+        <input type="number" name="k" value="{{ muallif.kitob_soni }}">
+        <button type="submit">  Saqlash </button>
+     </form>
+
+</body>
+</html>
